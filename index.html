@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#061b20">
+<title>El Artista · Biofrequency Control</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--bg:#061419;--panel:#0b252b;--panel2:#10343b;--line:#1c7780;--teal:#38e1d0;--cyan:#72f5ee;--text:#e8ffff;--muted:#9fc4c6;--gold:#f6c95b;--red:#ff7777}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#12434b 0,#061419 42%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:22px 18px 14px;border-bottom:1px solid #1d5960;background:#061419dd;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.brand{font-weight:900;letter-spacing:1px;color:var(--teal);font-size:22px}.sub{color:var(--muted);font-size:12px;margin-top:4px}
+nav{display:flex;gap:8px;overflow:auto;padding:12px 14px;position:sticky;top:76px;background:#061419ee;z-index:4}
+nav button,.btn{border:1px solid #23656d;background:#0b252b;color:var(--text);border-radius:12px;padding:10px 13px;font-weight:700;white-space:nowrap}
+nav button.active,.btn.primary{background:linear-gradient(135deg,#0d716f,#164e58);border-color:var(--teal);color:white}
+main{max-width:900px;margin:auto;padding:14px}.page{display:none}.page.active{display:block}
+.hero{padding:22px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#0b3338,#071a20);box-shadow:0 0 24px #16bdb522}
+h1{font-size:26px;margin:0 0 8px}h2{font-size:20px;color:var(--cyan);margin:8px 0 12px}h3{font-size:16px;margin:4px 0 8px}
+p{line-height:1.5;color:#c5dddd}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
+.card{background:linear-gradient(145deg,#0c2a30,#081c22);border:1px solid #1d626a;border-radius:16px;padding:15px}
+.metric{font-size:26px;font-weight:900;color:var(--teal)}.tag{display:inline-block;border:1px solid #277c7e;border-radius:20px;padding:4px 9px;color:var(--cyan);font-size:11px;margin:3px 4px 3px 0}
+.warning{border-left:4px solid var(--gold);padding:10px 12px;background:#392f1738;border-radius:8px;color:#f8e7b4;margin:12px 0}
+.danger{border-left:4px solid var(--red);padding:10px 12px;background:#421c2238;border-radius:8px;color:#ffd1d1;margin:12px 0}
+label{display:block;color:var(--muted);font-size:13px;margin:10px 0 5px}
+input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid #28666d;background:#061a20;color:var(--text);font:inherit}
+textarea{min-height:90px;resize:vertical}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}
+button{cursor:pointer}.organ{display:flex;justify-content:space-between;align-items:center;gap:10px}.organ button{background:#0d3036;border:1px solid #28666d;border-radius:10px;padding:8px;color:var(--cyan)}
+ul{padding-left:20px;color:#c5dddd;line-height:1.6}.small{font-size:12px}.bar{height:8px;background:#183d43;border-radius:9px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,#1cb5a9,#8ffff0);width:35%}
+footer{padding:24px;text-align:center;color:var(--muted);font-size:12px}
+#breathCircle{width:120px;height:120px;border:2px solid var(--teal);border-radius:50%;display:grid;place-items:center;margin:14px auto;color:var(--cyan);box-shadow:0 0 24px #38e1d044}
+</style>
+</head>
+<body>
+<header><div class="brand">👑 EL ARTISTA · BIOFREQUENCY CONTROL</div><div class="sub">Bienestar · educación corporal · análisis de señales</div></header>
+<nav id="nav">
+<button class="active" data-page="home">Inicio</button><button data-page="mind">Mente y emociones</button><button data-page="organs">Órganos</button><button data-page="body">Salud física</button><button data-page="cells">Reparación celular</button><button data-page="signals">Frecuencias RX/TX</button><button data-page="journal">Mi registro</button>
+</nav>
+<main>
+<section class="page active" id="home">
+<div class="hero"><span class="tag">PANEL PERSONAL</span><h1>Tu centro de bienestar y conocimiento</h1><p>Consulta información educativa, registra cómo te encuentras y aprende a interpretar señales físicas y electromagnéticas sin confundir mediciones con tratamientos.</p><div class="grid"><div class="card"><div class="muted">Estado emocional de hoy</div><div class="metric" id="homeMood">—</div><div class="muted">Se actualiza desde Mente y emociones</div></div><div class="card"><div class="muted">Registros guardados</div><div class="metric" id="entryCount">0</div><div class="muted">Guardados solo en este dispositivo</div></div><div class="card"><div class="muted">Referencia Schumann</div><div class="metric">7,83 Hz</div><div class="muted">Valor de referencia, no lectura en directo</div></div></div></div>
+<div class="grid"><div class="card"><h3>🧠 Mente y emociones</h3><p>Diario emocional, estrés percibido y ejercicio de respiración pausada.</p><button class="btn" data-go="mind">Abrir sección</button></div><div class="card"><h3>🫀 Órganos</h3><p>Guía educativa de sistemas y órganos del cuerpo humano.</p><button class="btn" data-go="organs">Explorar órganos</button></div><div class="card"><h3>🧬 Reparación celular</h3><p>Qué sabemos sobre sueño, nutrición, recuperación y renovación celular.</p><button class="btn" data-go="cells">Aprender</button></div></div>
+<div class="warning"><b>Uso responsable:</b> esta aplicación no diagnostica, no sustituye al personal sanitario y no ofrece tratamientos electromagnéticos. No conectes electrodos ni bobinas al cuerpo.</div>
+</section>
+<section class="page" id="mind">
+<h2>🧠 Mente y estados emocionales</h2><p>Registra tu experiencia subjetiva. Las emociones no son cargas eléctricas positivas o negativas: son estados complejos que incluyen pensamientos, sensaciones y respuestas corporales.</p>
+<div class="card"><label>¿Cómo te sientes ahora?</label><select id="mood"><option>Tranquilo/a</option><option content="">Alegre</option><option>Motivado/a</option><option>Triste</option><option>Ansioso/a</option><option>Enfadado/a</option><option>Cansado/a</option><option>Concentrado/a</option><option>Neutral</option></select>
+<label>Nivel de estrés percibido (0–10)</label><input id="stress" type="range" min="0" max="10" value="3" oninput="stressVal.textContent=this.value"><div class="muted">Nivel: <b id="stressVal">3</b>/10</div>
+<label>¿Qué puede estar influyendo?</label><textarea id="mindNote" placeholder="Sueño, trabajo, relaciones, actividad, pensamientos..."></textarea>
+<button class="btn primary" onclick="saveMood()">Guardar estado emocional</button></div>
+<div class="card"><h3>Respiración pausada</h3><p>Prueba un ritmo cómodo: inspira suavemente y espira sin forzar. Detente si notas mareo o incomodidad.</p><div id="breathCircle">Preparado</div><div class="row"><button class="btn primary" onclick="breathStart()">Iniciar 1 minuto</button><button class="btn" onclick="breathStop()">Detener</button></div><div class="muted" id="breathText">Ejercicio de relajación, no tratamiento médico.</div></div>
+</section>
+<section class="page" id="organs">
+<h2>🫀 Órganos y sistemas del cuerpo</h2><p>Selecciona un sistema para consultar su función general y señales que conviene comentar con un profesional.</p>
+<div class="grid" id="organGrid"></div><div class="card" id="organDetail"><h3>Elige un órgano o sistema</h3><p class="muted">Aquí aparecerá información educativa.</p></div>
+</section>
+<section class="page" id="body">
+<h2>🏃 Salud física</h2><p>Seguimiento personal de hábitos y síntomas. No interpreta estos datos como diagnóstico.</p>
+<div class="grid"><div class="card"><label>Horas de sueño</label><input id="sleep" type="number" min="0" max="24" step=".5" placeholder="Ej. 7.5"></div><div class="card"><label>Actividad física (minutos)</label><input id="activity" type="number" min="0" placeholder="Ej. 30"></div><div class="card"><label>Agua y bebidas (litros)</label><input id="water" type="number" min="0" step=".1" placeholder="Ej. 1.8"></div><div class="card"><label>Dolor o molestia (0–10)</label><input id="pain" type="range" min="0" max="10" value="0" oninput="painVal.textContent=this.value"><div class="muted">Nivel: <b id="painVal">0</b>/10</div></div></div>
+<div class="card"><label>Notas de salud física</label><textarea id="bodyNote" placeholder="Síntomas, duración, actividad, cambios..."></textarea><button class="btn primary" onclick="saveBody()">Guardar registro físico</button></div>
+<div class="warning">No hay una cantidad universal de agua ni una rutina adecuada para todo el mundo. Evita forzar la ingesta de líquidos; consulta si tienes restricciones médicas o síntomas persistentes.</div>
+<div class="danger">Dolor torácico intenso, dificultad respiratoria grave, pérdida repentina de fuerza, confusión súbita o desmayo requieren atención urgente (112 en España).</div>
+</section>
+<section class="page" id="cells">
+<h2>🧬 Salud y renovación celular</h2><p>La reparación celular es un conjunto de procesos biológicos reales: mantenimiento del ADN, eliminación de componentes dañados, renovación de tejidos y respuesta inmunitaria.</p>
+<div class="grid">
+<div class="card"><h3>😴 Sueño</h3><p>El descanso suficiente favorece la regulación metabólica, inmunitaria y la recuperación del organismo.</p><span class="tag">Evidencia sólida</span></div>
+<div class="card"><h3>🥗 Nutrición</h3><p>Una alimentación variada aporta energía, proteínas, vitaminas y minerales necesarios para mantener tejidos.</p><span class="tag">Evidencia sólida</span></div>
+<div class="card"><h3>🚶 Actividad física</h3><p>El movimiento adaptado mejora la función cardiovascular, muscular y metabólica.</p><span class="tag">Evidencia sólida</span></div>
+<div class="card"><h3>🚭 Evitar tóxicos</h3><p>No fumar y limitar exposiciones nocivas reduce daños conocidos en células y órganos.</p><span class="tag">Evidencia sólida</span></div>
+<div class="card"><h3>🩺 Atención preventiva</h3><p>Vacunas, revisiones y tratamiento indicado ayudan a prevenir o tratar enfermedades.</p><span class="tag">Evidencia sólida</span></div>
+<div class="card"><h3>⚡ Frecuencias</h3><p>No existe evidencia clínica suficiente para afirmar que 7,83 Hz u otras frecuencias reparen células u órganos.</p><span class="tag">No demostrado</span></div>
+</div>
+<div class="warning"><b>Importante:</b> no uses generadores, bobinas, electrodos ni señales eléctricas sobre el cuerpo para intentar regenerar células. Esta app no prescribe frecuencias terapéuticas.</div>
+</section>
+<section class="page" id="signals">
+<h2>📡 Laboratorio de señales RX/TX</h2>
+<div class="card"><h3>RX · Recepción y análisis</h3><p>La app puede mostrar datos de un dispositivo externo compatible, pero esta versión no tiene acceso directo a la antena ANTS A01 ni mide señales reales por sí sola.</p><div class="metric">7,83 Hz</div><div class="muted">Frecuencia Schumann de referencia · no es una medición</div><label>Frecuencia de referencia (Hz)</label><input type="number" value="7.83" step=".01" id="refFreq"><button class="btn" onclick="alert('Demo: conecta un receptor compatible y desarrolla su protocolo USB/Bluetooth para recibir mediciones reales.')">Comprobar conexión</button></div>
+<div class="card"><h3>TX · Generación de señal</h3><p>La generación de señales se reserva para pruebas de banco con instrumentación y cargas de prueba adecuadas. No se habilita transmisión al cuerpo humano.</p><label>Frecuencia de prueba (Hz)</label><input type="number" min="1" max="1000" value="7.83" id="txFreq"><label>Forma de onda</label><select id="wave"><option>Senoidal</option><option>Cuadrada</option><option>Triangular</option></select><button class="btn" onclick="alert('La interfaz es demostrativa: no genera ni transmite señal. Para una versión real se requiere firmware, aislamiento, límites eléctricos y pruebas de laboratorio.')">Ver configuración de banco</button></div>
+<div class="danger">No conectes la salida de un generador a electrodos, piel, cabeza, pecho ni dispositivos médicos. La aplicación no debe utilizarse como equipo terapéutico.</div>
+</section>
+<section class="page" id="journal">
+<h2>📒 Mi registro</h2><p>Los registros se guardan localmente en el navegador de este dispositivo.</p><div class="row"><button class="btn" onclick="exportData()">Exportar mis datos</button><button class="btn" onclick="clearData()">Borrar registros</button></div><div id="entries" class="grid"></div><p class="muted">No se envían datos a servidores. Si borras los datos del navegador, puedes perder los registros.</p>
+</section>
+</main>
+<footer>EL ARTISTA 👑 · BIOFREQUENCY CONTROL · Herramienta educativa y de autocuidado. No es un producto sanitario.</footer>
+<script>
+const organs=[
+['Cerebro','Coordina movimiento, percepción, memoria, lenguaje y muchas funciones automáticas.','Dolor de cabeza súbito e intenso, debilidad repentina o alteración brusca del habla requieren valoración urgente.'],
+['Corazón','Bombea sangre y mantiene la circulación.','Dolor opresivo en el pecho, falta de aire o desmayo requieren atención urgente.'],
+['Pulmones','Intercambian oxígeno y dióxido de carbono.','La dificultad respiratoria intensa es una urgencia.'],
+['Hígado','Procesa nutrientes, metaboliza sustancias y produce bilis y proteínas.','Ictericia o dolor persistente deben valorarse.'],
+['Riñones','Filtran la sangre, regulan líquidos, sales y presión arterial.','Cambios persistentes en la orina o hinchazón necesitan consulta.'],
+['Estómago e intestinos','Digieren alimentos y absorben nutrientes.','Dolor intenso, sangre en heces o vómitos persistentes requieren atención.'],
+['Páncreas','Produce enzimas digestivas y hormonas como la insulina.','Sed y micción excesivas o dolor abdominal persistente merecen consulta.'],
+['Piel','Protege el organismo y participa en la regulación térmica.','Lesiones que cambian, no cicatrizan o sangran deben revisarse.'],
+['Músculos y huesos','Permiten movimiento, soporte y protección.','Dolor o pérdida funcional persistentes deben evaluarse.'],
+['Sistema inmunitario','Reconoce y combate agentes infecciosos y participa en reparación tisular.','Fiebre alta persistente o infecciones repetidas requieren valoración.'],
+['Sistema endocrino','Coordina funciones mediante hormonas.','Cambios persistentes de peso, energía o temperatura pueden requerir estudio.'],
+['Sistema reproductor','Participa en reproducción y producción hormonal.','Dolor o cambios persistentes deben consultarse.']
+];
+const grid=document.getElementById('organGrid');
+organs.forEach((o,i)=>{let d=document.createElement('div');d.className='card organ';d.innerHTML='<b>'+o[0]+'</b><button>Ver</button>';d.querySelector('button').onclick=()=>{document.getElementById('organDetail').innerHTML='<h3>'+o[0]+'</h3><p>'+o[1]+'</p><div class="warning">'+o[2]+'</div><p class="muted">Información general; no sustituye una evaluación clínica.</p>'};grid.appendChild(d)});
+const pages=[...document.querySelectorAll('.page')], nav=[...document.querySelectorAll('nav button')];
+function showPage(id){pages.forEach(p=>p.classList.toggle('active',p.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0)}
+nav.forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showPage(b.dataset.go));
+function getEntries(){try{return JSON.parse(localStorage.getItem('bio_entries')||'[]')}catch(e){return []}}
+function saveEntry(item){let a=getEntries();a.unshift({...item,date:new Date().toLocaleString('es-ES')});localStorage.setItem('bio_entries',JSON.stringify(a));renderEntries()}
+function saveMood(){let m=document.getElementById('mood').value;saveEntry({type:'Emoción',mood:m,stress:document.getElementById('stress').value,note:document.getElementById('mindNote').value});document.getElementById('homeMood').textContent=m;alert('Estado emocional guardado en este dispositivo.')}
+function saveBody(){saveEntry({type:'Salud física',sleep:document.getElementById('sleep').value,activity:document.getElementById('activity').value,water:document.getElementById('water').value,pain:document.getElementById('pain').value,note:document.getElementById('bodyNote').value});alert('Registro físico guardado.')}
+function renderEntries(){let a=getEntries();document.getElementById('entryCount').textContent=a.length;document.getElementById('entries').innerHTML=a.length?a.map(x=>'<div class="card"><b>'+x.type+'</b><div class="muted">'+x.date+'</div><p>'+((x.mood||'')+' '+(x.note||'')).replace(/[<>]/g,'')+'</p></div>').join(''):'<div class="card">Todavía no hay registros.</div>'}
+function exportData(){let blob=new Blob([JSON.stringify(getEntries(),null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mis-registros-biofrequency.json';a.click();URL.revokeObjectURL(a.href)}
+function clearData(){if(confirm('¿Borrar todos los registros guardados en este dispositivo?')){localStorage.removeItem('bio_entries');renderEntries();document.getElementById('homeMood').textContent='—'}}
+let breathTimer=null,breathStep=0;function breathStart(){breathStop();let seq=['Inspira suavemente','Espira lentamente'];breathStep=0;let end=Date.now()+60000;function tick(){if(Date.now()>=end){breathStop();document.getElementById('breathCircle').textContent='Terminado';return}document.getElementById('breathCircle').textContent=seq[breathStep%2];document.getElementById('breathText').textContent='Sigue un ritmo cómodo, sin aguantar el aire.';breathStep++;breathTimer=setTimeout(tick,5000)}tick()}
+function breathStop(){if(breathTimer)clearTimeout(breathTimer);breathTimer=null;document.getElementById('breathCircle').textContent='Preparado'}
+renderEntries();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body></html>
